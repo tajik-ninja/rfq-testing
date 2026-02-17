@@ -1,0 +1,76 @@
+# Load Test Configuration
+# This file configures parameters for load/stress tests
+
+# Test Parameters
+test:
+  # Number of simulated market makers
+  num_market_makers: 100
+  
+  # Number of simulated retail users (creating requests)
+  num_retail_users: 10
+  
+  # Total trades to execute
+  total_trades: 10000
+  
+  # Concurrent requests at any time
+  max_concurrent_requests: 50
+  
+  # Duration limit (seconds) - test stops after this
+  max_duration_seconds: 600  # 10 minutes
+  
+  # Ramp up period (seconds) - gradually increase load
+  ramp_up_seconds: 60
+
+# Timing
+timing:
+  # Delay between retail requests (ms)
+  request_interval_ms: 100
+  
+  # MM quote response window (ms)
+  quote_timeout_ms: 5000
+  
+  # Settlement timeout (ms)
+  settlement_timeout_ms: 10000
+
+# Market Distribution
+# How trades should be distributed across markets
+distribution:
+  strategy: "weighted"  # Options: single, round_robin, weighted, random
+  
+  # For weighted strategy
+  weights:
+    "INJ/USDT": 1.0  # 100% to INJ/USDT for now
+    # "BTC/USDT": 0.30
+    # "ETH/USDT": 0.20
+
+# Trade Parameters
+trade:
+  # Range for margin (random within range)
+  margin_min: "100"
+  margin_max: "1000"
+  
+  # Range for quantity
+  quantity_min: "10"
+  quantity_max: "100"
+  
+  # Quote expiry (ms from now)
+  quote_expiry_ms: 30000
+
+# Metrics Collection
+metrics:
+  # How often to log progress (trades)
+  log_interval: 100
+  
+  # Percentiles to calculate
+  percentiles: [50, 90, 95, 99]
+  
+  # Output file for detailed metrics
+  output_file: "load_test_results.json"
+
+# Error Handling
+errors:
+  # Max consecutive errors before stopping
+  max_consecutive_errors: 10
+  
+  # Whether to continue on individual trade errors
+  continue_on_error: true

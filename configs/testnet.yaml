@@ -1,0 +1,40 @@
+# Testnet environment configuration
+# RFQ testnet: https://testnet.rfq.injective.network (swagger: /swagger/)
+environment: testnet
+
+chain:
+  grpc_endpoint: "testnet-grpc.injective.dev:443"
+  # Sentry LCD: used for mark price (v2 derivative markets) and chain queries
+  lcd_endpoint: "https://testnet.sentry.lcd.injective.network"
+  chain_id: "injective-888"
+  tx_timeout_seconds: 10
+
+# RFQ Indexer API (testnet). Server is gRPC-over-WS; path = /injective_rfqrpc.InjectiveRFQRPC/<Method> (see indexer proto).
+# Client appends /MakerStream or /TakerStream to ws_endpoint.
+indexer:
+  ws_endpoint: "wss://testnet.rfq.ws.injective.network/injective_rfqrpc.InjectiveRFQRPC"
+  http_endpoint: "https://testnet.rfq.injective.network"
+  grpc_web_endpoint: "https://testnet.rfq.grpc.injective.network/injective_rfqrpc.InjectiveRFQRPC"
+
+contract:
+  address: "inj1t8hyyle68vd0kzsdehxg0sywttrwmt58jzk29q"
+
+# Testnet derivative markets. Mark price: .../injective/exchange/v2/derivative/markets/{id}
+markets:
+  - id: "0x17ef48032cb24375ba7c2e39f384e56433bcab20cbee9a7357e4cba2eb00abe6"
+    symbol: "INJ/USDT PERP"
+    base: "INJ"
+    quote: "USDT"
+    price_source: "oracle"
+    min_quantity: 1.0
+  - id: "0xd97d0da6f6c11710ef06315971250e4e9aed4b7d4cd02059c9477ec8cf243782"
+    symbol: "ATOM/USDT PERP"
+    base: "ATOM"
+    quote: "USDT"
+    price_source: "oracle"
+    min_quantity: 0.01
+
+faucet:
+  enabled: true
+  url: "https://testnet-faucet.injective.dev"
+  rate_limit_seconds: 60

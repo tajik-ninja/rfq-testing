@@ -1,0 +1,51 @@
+# Local environment configuration
+environment: local
+
+chain:
+  grpc_endpoint: "localhost:9900"
+  grpc_exchange_endpoint: "localhost:9910"
+  grpc_explorer_endpoint: "localhost:9911"
+  chain_stream_endpoint: "localhost:9999"
+  lcd_endpoint: "http://localhost:10337"
+  chain_id: "injective-888"
+  tx_timeout_seconds: 5
+
+indexer:
+  ws_endpoint: "ws://localhost:4464/ws"
+  http_endpoint: "http://localhost:4464"
+
+# Contract address
+contract:
+  address: "inj14hj2tavq8fpesdwxxcu44rty3hh90vhujaclearxlnz"
+
+# Static prices for local testing (controllable)
+# These can be adjusted to test different price scenarios
+markets:
+  - id: "0x7cc8b10d7deb61e744ef83bdec2bbcf4a056867e89b062c6a453020ca82bd4e4"  # INJ/USDT perp
+    symbol: "INJ/USDT"
+    base: "INJ"
+    quote: "USDT"
+    price: 4.0
+    min_quantity: 1.0
+    price_source: "static"
+
+  # Additional markets can be added as they become available on local chain
+  # - id: ""  # BTC/USDT perp
+  #   symbol: "BTC/USDT"
+  #   base: "BTC"
+  #   quote: "USDT"
+  #   price: 80000.0
+  #   min_quantity: 0.001
+  #   price_source: "static"
+  #
+  # - id: ""  # ETH/USDT perp
+  #   symbol: "ETH/USDT"
+  #   base: "ETH"
+  #   quote: "USDT"
+  #   price: 3000.0
+  #   min_quantity: 0.01
+  #   price_source: "static"
+
+# Faucet not needed for local (funded from genesis)
+faucet:
+  enabled: false
